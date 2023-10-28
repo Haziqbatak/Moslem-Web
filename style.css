@@ -156,6 +156,21 @@ header {
     background-color: rgb(10, 119, 21);
 }
 
+.CLT{
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.MyClockDisplay{
+    margin: 1rem 7rem 3rem 7rem;
+    background-color: #39ff8c;
+    color: aliceblue;
+    font-size: 7rem;
+    border-radius: 30px;
+    text-align: center;
+
+}
+
 /* Asmaul Hunsa */
 #result {
     padding: 2rem 3rem 3rem;
