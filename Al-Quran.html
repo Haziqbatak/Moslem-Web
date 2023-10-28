@@ -36,25 +36,25 @@
 
         function getDataSurat() {
             fetch('https://api.banghasan.com/quran/format/json/surat')
-            .then(function (response) {
-                if (!response.ok) {
-                    throw new Error ('Gagal mengambil data')
-                }
-                return response.json();
-            })
-            .then(function (data) {
-                displayDataSurat(data)
-            })
-            .catch(function (error) {
-                console.log('terjadi kesalahan', error);
-            })
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw new Error('Gagal mengambil data')
+                    }
+                    return response.json();
+                })
+                .then(function (data) {
+                    displayDataSurat(data)
+                })
+                .catch(function (error) {
+                    console.log('terjadi kesalahan', error);
+                })
         }
 
         function displayDataSurat(data) {
             let resultDiv = document.getElementById("result");
             resultDiv.innerHTML = '';
 
-            data.hasil.forEach( function (surat) {
+            data.hasil.forEach(function (surat) {
                 let suratdiv = document.createElement("div")
                 suratdiv.classList.add("kotak");
 
@@ -84,7 +84,7 @@
                 ayatSurat.classList.add("ayat")
 
                 let artiSurat = document.createElement("p")
-                artiSurat.innerHTML ="artinya: " + surat.arti;
+                artiSurat.innerHTML = "artinya: " + surat.arti;
                 artiSurat.classList.add("arti")
 
                 let value = document.createElement("p")
@@ -105,4 +105,5 @@
         }
     </script>
 </body>
+
 </html>

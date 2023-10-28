@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
     <header class="header">
         <img class="logo" src="img/sholat.png" alt=" " style="height: auto;">
@@ -36,25 +38,25 @@
 
         function getDataAsma() {
             fetch('https://api.aladhan.com/v1/asmaAlHusna')
-            .then(function (response) {
-                if (!response.ok) {
-                    throw new Error ('Gagal mengambil data')
-                }
-                return response.json();
-            })
-            .then(function (asma) {
-                displayDataAsma(asma)
-            })
-            .catch(function (error) {
-                console.log('terjadi kesalahan', error);
-            })
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw new Error('Gagal mengambil data')
+                    }
+                    return response.json();
+                })
+                .then(function (asma) {
+                    displayDataAsma(asma)
+                })
+                .catch(function (error) {
+                    console.log('terjadi kesalahan', error);
+                })
         }
 
         function displayDataAsma(asma) {
             let resultDiv = document.getElementById("result");
             resultDiv.innerHTML = '';
 
-            asma.data.forEach( function (asma) {
+            asma.data.forEach(function (asma) {
                 let asmaDiv = document.createElement("div")
                 asmaDiv.classList.add("kotak");
 
@@ -80,7 +82,7 @@
                 arabAsma.classList.add("arab")
 
                 let artiAsma = document.createElement("p")
-                artiAsma.innerHTML ="The meaning: " + asma.en.meaning;
+                artiAsma.innerHTML = "The meaning: " + asma.en.meaning;
                 artiAsma.classList.add("arti")
 
                 let value = document.createElement("p")
@@ -100,4 +102,5 @@
         }
     </script>
 </body>
+
 </html>
