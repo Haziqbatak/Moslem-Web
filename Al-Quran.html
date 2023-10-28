@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Imtiyaziyyu.muslim</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header class="header">
+        <img class="logo" src="img/sholat.png" alt=" " style="height: auto;">
+        <i class="bx bx-menu-alt-left" id="menu-icon" style="color: rgb(7, 7, 7);"></i>
+
+        <nav class="navbar">
+            <a href="Jadwal Sholat.html">Jadwal Sholat</a>
+            <a href="asmaul_husna.html">Asmaul Husna</a>
+            <a href="Al-Quran.html" class="active">Al-Qur'an</a>
+        </nav>
+        <div class="tombol">
+            <button class="button">User</button>
+        </div>
+    </header>
+
+    <section class="awal">
+        <img class="gambar" src="img/bismillah.png" alt="poto" style="width: auto;">
+    </section>
+
+    <div id="result"></div>
+
+    <script>
+        window.onload = function () {
+            getDataSurat();
+        }
+
+        function getDataSurat() {
+            fetch('https://api.banghasan.com/quran/format/json/surat')
+            .then(function (response) {
+                if (!response.ok) {
+                    throw new Error ('Gagal mengambil data')
+                }
+                return response.json();
+            })
+            .then(function (data) {
+                displayDataSurat(data)
+            })
+            .catch(function (error) {
+                console.log('terjadi kesalahan', error);
+            })
+        }
+
+        function displayDataSurat(data) {
+            let resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = '';
+
+            data.hasil.forEach( function (surat) {
+                let suratdiv = document.createElement("div")
+                suratdiv.classList.add("kotak");
+
+                let abuDiv = document.createElement("div")
+                abuDiv.classList.add("kecil");
+
+                let nomerSurat = document.createElement("button")
+                nomerSurat.innerHTML = surat.nomor;
+                nomerSurat.classList.add("nomer");
+
+                let namaSurat = document.createElement("h3")
+                namaSurat.innerHTML = surat.nama;
+                namaSurat.classList.add("nama");
+
+                var gambar = document.createElement("save")
+                gambar.classList.add("save");
+
+                var putihDiv = document.createElement("div")
+                putihDiv.classList.add("sukses");
+
+                let arabSurat = document.createElement("h2")
+                arabSurat.innerHTML = surat.asma;
+                arabSurat.classList.add("arab")
+
+                let ayatSurat = document.createElement("p");
+                ayatSurat.innerHTML = "Ayat Surat: " + surat.ayat;
+                ayatSurat.classList.add("ayat")
+
+                let artiSurat = document.createElement("p")
+                artiSurat.innerHTML ="artinya: " + surat.arti;
+                artiSurat.classList.add("arti")
+
+                let value = document.createElement("p")
+                value.classList.add("line");
+
+                suratdiv.appendChild(abuDiv);
+                abuDiv.appendChild(nomerSurat);
+                abuDiv.appendChild(namaSurat);
+                abuDiv.appendChild(gambar);
+                suratdiv.appendChild(putihDiv);
+                putihDiv.appendChild(arabSurat);
+                putihDiv.appendChild(artiSurat);
+                putihDiv.appendChild(ayatSurat)
+                putihDiv.appendChild(value);
+
+                resultDiv.appendChild(suratdiv);
+            })
+        }
+    </script>
+</body>
+</html>
