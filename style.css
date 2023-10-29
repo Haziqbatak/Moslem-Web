@@ -159,6 +159,7 @@ header {
 .CLT{
     text-align: center;
     margin-top: 4rem;
+    justify-content: center;
 }
 
 .MyClockDisplay{
@@ -168,7 +169,6 @@ header {
     font-size: 7rem;
     border-radius: 30px;
     text-align: center;
-
 }
 
 /* Asmaul Hunsa */
